@@ -1,0 +1,15 @@
+ valoarea initiala din vect : 
+
+
+
+
+
+
+DFS :
+Sortarea dfs a mers ok ! :>
+
+
+
+
+GBFS :
+Sortarea bgfs a mers ok ! :>
