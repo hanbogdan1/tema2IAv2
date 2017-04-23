@@ -56,7 +56,7 @@ public:
 		f.open("inp.txt");
 		g.open("out.txt");
 		srand(time(NULL));
-		this->citire_date();
+		this->citire_date(); 
 	}
 
 	~cls()
