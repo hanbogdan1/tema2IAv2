@@ -23,7 +23,12 @@ void cls::interschimbare(std::vector<int> & a)
 
 	g << "Intra in schimbare ";
 	int indice1 = 1, indice2 = 1;
-	while (indice1 == indice2 || (indice1 < indice2 && a.at(indice1) < a.at(indice2)) || (indice2 < indice1 && a.at(indice2) < a.at(indice1)) || a.at(indice1) == a.at(indice2))
+
+	//while (indice1 == indice2 || (indice1 < indice2 && a.at(indice1) < a.at(indice2)) || (indice2 < indice1 && a.at(indice2) < a.at(indice1)) || a.at(indice1) == a.at(indice2))
+	//best performance <3 
+
+	while (indice1 == indice2)  
+
 	{
 		indice1 = rand() % a.size();
 		indice2 = rand() % a.size();
@@ -91,11 +96,11 @@ void cls::gbfs(std::vector<int> vect)
 {
 	visited.clear();
 	g << "\n\n\n\n\nGBFS :\n";
-	coada.push(vect);
+	adaugare_coada(vect);
 	visited.push_back(vect);
 	while (coada.size()>0 && !solutie(vect))
 	{
-		vect = coada.top();
+		vect = coada.front();
 		g << "\n a fost als vect : ";
 		afisare_vect(vect);
 		interschimbare(vect);
@@ -103,7 +108,7 @@ void cls::gbfs(std::vector<int> vect)
 		afisare_vect(vect);
 		if (std::find(visited.begin(), visited.end(), vect) == visited.end()) {
 			g << " valoarea de sus a fost nevizitata\n ";
-			coada.push(vect);
+			adaugare_coada(vect);
 			visited.push_back(vect);
 		}
 		else
@@ -117,4 +122,14 @@ void cls::gbfs(std::vector<int> vect)
 	else
 		g << "Sortarea bgfs nu a mers ok ! :>";
 
+}
+
+void cls::adaugare_coada(std::vector<int> vect)
+{
+	int i = 0;
+	for (; i < coada.size(); i++) {
+		if (comp.operator()(coada[i], vect))
+			break;
+	}
+	coada.insert(coada.begin() + i, vect);
 }

@@ -11,13 +11,13 @@
 
 static struct comparator
 {
-	bool operator()(std::vector<int> &a, std::vector<int> &b)
+	bool operator()(static std::vector<int> a, static std::vector<int> b)
 	{
 		return cmp_vect(a, b);
 	}
 
 
-	bool cmp_vect(std::vector<int> &a, std::vector<int> &b)
+	bool cmp_vect(static std::vector<int> a, static  std::vector<int> b)
 	{
 
 		if (calculare_cardinal_coada(a) > calculare_cardinal_coada(b))
@@ -25,14 +25,15 @@ static struct comparator
 		return true;
 	}
 
-	static int calculare_cardinal_coada(std::vector<int> &vect)
+	static int calculare_cardinal_coada(static std::vector<int> vect)
 	{
 		auto ret = 0;
-		for (auto i = vect.begin(); i != vect.end() - 1; ++i)
+		for (auto i = 0; i < vect.size()-1; ++i)
 		{
-			if (*i > *(i + 1))
-				return ret;
-			ret++;
+			for (auto j = i + 1; j < vect.size(); j++) {
+				if (vect[i] < vect[j])
+					ret++;
+			}
 		}
 		return ret;
 	}
@@ -41,9 +42,9 @@ static struct comparator
 
 class cls
 {
-
+	comparator comp;
 	std::stack <std::vector<int >> stiva;
-	std::priority_queue<std::vector<int>, std::vector<std::vector<int>>, comparator> coada;
+	std::vector<std::vector<int>> coada;
 	std::ifstream f;
 	std::ofstream g;
 	std::vector<int> final_form;
@@ -71,5 +72,6 @@ public:
 	void dfs(std::vector<int> vect);
 	void afisare_vect(std::vector<int>& vect);
 	void gbfs(std::vector<int> vect);
+	void adaugare_coada(std::vector<int> vect);
+
 };
-#pragma once
