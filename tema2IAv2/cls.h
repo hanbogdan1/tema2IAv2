@@ -69,9 +69,9 @@ public:
 	void citire_date();
 	void interschimbare(std::vector<int>& a);
 	bool solutie(std::vector<int> &vect);
-	void dfs(std::vector<int> vect);
+	void dfs(std::vector<int> &vect);
 	void afisare_vect(std::vector<int>& vect);
-	void gbfs(std::vector<int> vect);
+	void gbfs(std::vector<int> &vect);
 	void adaugare_coada(std::vector<int> vect);
 
 };

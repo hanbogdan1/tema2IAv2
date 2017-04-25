@@ -16,6 +16,7 @@ void cls::citire_date()
 
 	final_form.assign(initial_values.begin(), initial_values.end());
 	sort(final_form.begin(), final_form.end());
+
 }
 
 void cls::interschimbare(std::vector<int> & a)
@@ -47,8 +48,13 @@ bool cls::solutie(std::vector<int>& vect)
 	return final_form == vect;
 }
 
-void cls::dfs(std::vector<int> vect)
+void cls::dfs(std::vector<int> &vect)
 {
+	visited.clear();
+
+	final_form.assign(vect.begin(), vect.end());
+	sort(final_form.begin(), final_form.end());
+
 	g << "\n\n\n\n\nDFS :\n";
 
 	stiva.push(vect);
@@ -92,8 +98,11 @@ void cls::afisare_vect(std::vector<int> & vect)
 	g << "\n";
 }
 
-void cls::gbfs(std::vector<int> vect)
+void cls::gbfs(std::vector<int>& vect)
 {
+	final_form.assign(vect.begin(), vect.end());
+	sort(final_form.begin(), final_form.end());
+
 	visited.clear();
 	g << "\n\n\n\n\nGBFS :\n";
 	adaugare_coada(vect);
